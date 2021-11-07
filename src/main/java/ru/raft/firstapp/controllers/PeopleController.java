@@ -1,6 +1,5 @@
 package ru.raft.firstapp.controllers;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.raft.firstapp.dao.PersonDAO;
 import ru.raft.firstapp.models.Person;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
@@ -39,7 +39,7 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Person person,
+    public String create(@ModelAttribute("person") @Valid final Person person,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "/people/new";
@@ -55,7 +55,7 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid Person person,
+    public String update(@ModelAttribute("person") @Valid final Person person,
                          BindingResult bindingResult ,@PathVariable("id") int id) {
         if (bindingResult.hasErrors())
             return "people/edit";

@@ -39,7 +39,7 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") @Valid final Person person,
+    public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "/people/new";
@@ -55,7 +55,7 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid final Person person,
+    public String update(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult ,@PathVariable("id") int id) {
         if (bindingResult.hasErrors())
             return "people/edit";
